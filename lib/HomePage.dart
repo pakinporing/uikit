@@ -35,7 +35,6 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           // color: bgColor,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/52525252525.jpg'),
               Text(
