@@ -22,11 +22,13 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.settings),
-            onPressed: () {
-              Navigator.push(
+            onPressed: () async {
+              await Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SettingsPage()),
-              );
+              ).then((value) {
+                print('======== $value');
+              });
             },
           ),
         ],

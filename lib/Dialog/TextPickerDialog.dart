@@ -8,11 +8,12 @@ class TextPickerDialog extends StatefulWidget {
 }
 
 class _TextPickerDialogState extends State<TextPickerDialog> {
-  String _selectedText = 'ข้อความตัวอย่างจากอันเก่า';
+  String _selectedText = 'ข้อความตัวอย่าง';
   final List<String> _textOptions = [
     'ขอบคุณ',
     'ขอโทษ',
     'สวัสดี',
+    'ลาก่อน',
   ];
 
   @override
