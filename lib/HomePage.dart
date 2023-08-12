@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Color bgColor = _selectedColor;
+  Color bgColor = Colors.white;
   // String text1 = _selectedText;
   // String pic = _selectedPic;
 
@@ -27,6 +27,9 @@ class _HomePageState extends State<HomePage> {
                 context,
                 MaterialPageRoute(builder: (context) => SettingsPage()),
               ).then((value) {
+                setState(() {
+                  bgColor = value;
+                });
                 print('======== $value');
               });
             },
@@ -35,7 +38,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Container(
-          // color: bgColor,
+          color: bgColor,
           child: Column(
             children: [
               Image.asset('assets/52525252525.jpg'),
