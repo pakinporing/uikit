@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'Dialog/AppBarPickerDialog.dart';
 import 'Dialog/ColorPickerDialog.dart';
 import 'Dialog/PicDialog.dart';
 import 'Dialog/TextPickerDialog.dart';
@@ -12,8 +13,10 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  Color? _selelectedColor;
+  Color? selelectedColor;
   String? selelectedText;
+  String? selelectedPic;
+  String? selelectedAppBar;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +26,12 @@ class _SettingsPageState extends State<SettingsPage> {
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: Icon(Icons.chevron_left),
-          onPressed: () =>
-              Navigator.pop(context, [_selelectedColor, selelectedText]),
+          onPressed: () => Navigator.pop(context, [
+            selelectedColor,
+            selelectedText,
+            selelectedPic,
+            selelectedAppBar
+          ]),
         ),
       ),
       body: ListView(
@@ -34,20 +41,19 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: () async {
               await ColorPickerDialog(context).then((value) {
                 setState(() {
-                  _selelectedColor = value;
+                  selelectedColor = value;
                 });
               });
             },
           ),
           ListTile(
             title: Text('เปลี่ยนรูปภาพ'),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return PicDialog();
-                },
-              );
+            onTap: () async {
+              await PicDialog(context).then((value) {
+                setState(() {
+                  selelectedPic = value;
+                });
+              });
             },
           ),
           ListTile(
@@ -56,9 +62,16 @@ class _SettingsPageState extends State<SettingsPage> {
               await TextPickerDialog(context).then((value) {
                 setState(() {
                   selelectedText = value;
-                  print('5555555555555');
-                  print(selelectedText);
-                  print('5555555555555');
+                });
+              });
+            },
+          ),
+          ListTile(
+            title: Text('เปลี่ยนข้อความ AppBar'),
+            onTap: () async {
+              await AppBarPickerDialog(context).then((value) {
+                setState(() {
+                  selelectedAppBar = value;
                 });
               });
             },
