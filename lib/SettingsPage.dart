@@ -13,6 +13,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   Color? _selelectedColor;
+  String? selelectedText;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,8 @@ class _SettingsPageState extends State<SettingsPage> {
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: Icon(Icons.chevron_left),
-          onPressed: () => Navigator.pop(context, _selelectedColor),
+          onPressed: () =>
+              Navigator.pop(context, [_selelectedColor, selelectedText]),
         ),
       ),
       body: ListView(
@@ -50,13 +52,15 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ListTile(
             title: Text('เปลี่ยนข้อความ'),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return TextPickerDialog();
-                },
-              );
+            onTap: () async {
+              await TextPickerDialog(context).then((value) {
+                setState(() {
+                  selelectedText = value;
+                  print('5555555555555');
+                  print(selelectedText);
+                  print('5555555555555');
+                });
+              });
             },
           ),
         ],

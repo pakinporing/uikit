@@ -20,11 +20,10 @@ import 'package:flutter/material.dart';
 //   }
 // }
 
-Future<Color> ColorPickerDialog(
-  BuildContext context,
-) {
-  final Completer<Color> completer = Completer<Color>();
-  showDialog<Color>(
+Future<Color?> ColorPickerDialog(BuildContext context) async {
+  final Completer<Color?> completer = Completer<Color?>();
+
+  await showDialog<Color>(
     context: context,
     builder: (BuildContext context) {
       return SimpleDialog(
@@ -34,7 +33,8 @@ Future<Color> ColorPickerDialog(
           Colors.orange,
           Colors.black,
           Colors.green,
-          Colors.blue
+          Colors.blue,
+          Colors.white,
         ].map((Color color) {
           return SimpleDialogOption(
             onPressed: () {

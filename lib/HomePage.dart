@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Color bgColor = Colors.white;
-  // String text1 = _selectedText;
+  String text1 = '5555';
   // String pic = _selectedPic;
 
   @override
@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
               ).then((value) {
                 setState(() {
                   bgColor = value;
+                  // text1 = value[1];
                 });
                 print('======== $value');
               });
