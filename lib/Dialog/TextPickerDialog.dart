@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 Future<String?> TextPickerDialog(BuildContext context) async {
   final Completer<String?> completer = Completer<String?>();
 
-  await showDialog<String>(
+  await showDialog<String?>(
     context: context,
     builder: (BuildContext context) {
       return SimpleDialog(

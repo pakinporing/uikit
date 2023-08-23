@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   String? text1 = '';
   String? appBar = '';
   String? pic = 'assets/null.png';
+  String? input = '';
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,11 @@ class _HomePageState extends State<HomePage> {
                     appBar = value[3];
                   });
                 }
+                if (value[4] != null) {
+                  setState(() {
+                    input = value[4];
+                  });
+                }
 
                 print('======== $value ======');
               });
@@ -55,24 +61,46 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Center(
-        child: Container(
-          color: bgColor,
-          child: Column(
-            children: [
-              pic == 'assets/null.png' || pic == 'assets/del.png'
-                  ? Container()
-                  : Image.asset(
-                      pic ?? 'assets/null.png',
-                      height: 300,
-                    ),
-              text1 == '' || text1 == 'ลบ'
-                  ? Container()
-                  : Text(
-                      text1 ?? '',
-                      style: TextStyle(fontSize: 24),
-                    ),
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            height: 1500,
+            color: bgColor,
+            child: Column(
+              children: [
+                pic == 'assets/null.png' || pic == 'assets/del.png'
+                    ? Container()
+                    : Image.asset(
+                        pic ?? 'assets/null.png',
+                        height: 300,
+                      ),
+                SizedBox(
+                  height: 8,
+                ),
+                input == '' || input == 'ลบ'
+                    ? Container()
+                    : Padding(
+                        padding: EdgeInsets.only(
+                            top: 0, bottom: 0, left: 30, right: 30),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            contentPadding: EdgeInsets.all(10),
+                          ),
+                        ),
+                      ),
+                SizedBox(
+                  height: 30,
+                ),
+                text1 == '' || text1 == 'ลบ'
+                    ? Container()
+                    : Text(
+                        text1 ?? '',
+                        style: TextStyle(fontSize: 24),
+                      ),
+              ],
+            ),
           ),
         ),
       ),
