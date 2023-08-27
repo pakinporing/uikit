@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   String? appBar = '';
   String? pic = 'assets/null.png';
   String? input = '';
+  String? button = '';
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,11 @@ class _HomePageState extends State<HomePage> {
                     input = value[4];
                   });
                 }
+                if (value[5] != null) {
+                  setState(() {
+                    button = value[5];
+                  });
+                }
 
                 print('======== $value ======');
               });
@@ -77,6 +83,34 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 8,
                 ),
+                text1 == '' || text1 == 'ลบ'
+                    ? Container()
+                    : Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 3,
+                              blurRadius: 7,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          text1 ?? '',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                offset: Offset(0, 3),
+                                blurRadius: 5,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                 input == '' || input == 'ลบ'
                     ? Container()
                     : Padding(
@@ -90,15 +124,54 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                text1 == '' || text1 == 'ลบ'
+                button == '' || button == 'ลบ'
                     ? Container()
-                    : Text(
-                        text1 ?? '',
-                        style: TextStyle(fontSize: 24),
-                      ),
+                    : button == 'เพิ่มปุ่มกดแบบที่1'
+                        ? ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              padding: EdgeInsets.all(16),
+                              backgroundColor: Colors.red,
+                              textStyle: TextStyle(color: Colors.white),
+                            ),
+                            child: Text('สี่เหลี่ยม'),
+                          )
+                        : button == 'เพิ่มปุ่มกดแบบที่2'
+                            ? InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.blue,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.blue.withOpacity(0.5),
+                                        spreadRadius: 3,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'วงกลม',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Container(),
               ],
             ),
           ),

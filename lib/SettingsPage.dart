@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Dialog/AppBarPickerDialog.dart';
+import 'Dialog/ButtonPickerDialog.dart';
 import 'Dialog/ColorPickerDialog.dart';
 import 'Dialog/InputPickerDialog.dart';
 import 'Dialog/PicDialog.dart';
@@ -19,6 +20,7 @@ class _SettingsPageState extends State<SettingsPage> {
   String? selelectedPic;
   String? selelectedAppBar;
   String? addInput;
+  String? addButton;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,8 @@ class _SettingsPageState extends State<SettingsPage> {
             selelectedText,
             selelectedPic,
             selelectedAppBar,
-            addInput
+            addInput,
+            addButton
           ]),
         ),
       ),
@@ -75,6 +78,16 @@ class _SettingsPageState extends State<SettingsPage> {
               await InputPickerDialog(context).then((value) {
                 setState(() {
                   addInput = value;
+                });
+              });
+            },
+          ),
+          ListTile(
+            title: Text('เพิ่มButton'),
+            onTap: () async {
+              await ButtonPickerDialog(context).then((value) {
+                setState(() {
+                  addButton = value;
                 });
               });
             },
